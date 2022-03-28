@@ -10,7 +10,7 @@ $ make clean
 $ make
 $ insmod mychrdev.ko
 ```
-### 2. How to run
+### 2. How to run (Write and Read)
 ```
 $ echo 'ABCD' > /dev/mychrdev
 $ cat /dev/mychrdev
