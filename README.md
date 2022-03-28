@@ -21,5 +21,5 @@ $ rmmod mychrdev.ko
 ```
 ### 4. How to check whether a device exists
 ```
-$  ls -l /dev/ |grep [device name keywords]
+$  ls -l /dev/ |grep [device name's keywords]
 ```
