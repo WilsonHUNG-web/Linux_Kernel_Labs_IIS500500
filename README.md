@@ -2,6 +2,9 @@
 
 ### mychrdev.c
 Create a character storage device '/dev/mychrdev' which stores 100kB characters plus '\0' at the end. Excessive characters in 'echo' will be omitted.
+<br>
+Example commands,
 ```
-$ echo 'ABC' > /dev/mychrdev
+$ echo 'ABCD' > /dev/mychrdev
 $ cat /dev/mychrdev
+```
