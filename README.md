@@ -1,5 +1,5 @@
 # Linux_kernel_labs
-Dedicated for Linux Kernel 2.6.39.4 (CentOS 6)
+Dedicated for **Linux Kernel 2.6.39.4 (CentOS 6)**
 <br>
 The labs are the practice cases from the course **Linux Kernel (IIS500500)** delivered in **National Tsing Hua University**.
 <br>
