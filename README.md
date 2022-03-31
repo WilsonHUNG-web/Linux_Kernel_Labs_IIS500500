@@ -25,3 +25,16 @@ $ rmmod mychrdev.ko
 ```
 $  lsmod |grep [device name's keyword]
 ```
+## II. ```myfs.c```
+This kernel function creates a filesystme of files and directories that provide specific functions and store numbers in the files.
+
+### 1. How to compile and install (```Makefile``` shall be editted accordingly based on different kernel function filenames.)
+```
+$ make clean
+$ make
+$ insmod myfs.ko
+```
+### 2. How to mount the file system (Write and Read)
+```
+$ mount -t myfs /dev/loop0(could be loop1, loop2, etc.) [mounting directory]
+```
