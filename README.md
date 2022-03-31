@@ -38,8 +38,8 @@ $ insmod myfs.ko
 ```
 ### 2. How to mount the file system (Write and Read)
 ```
-$ mount -t myfs /dev/loop0 /home
+$ mount -t myfs /dev/loop0 /fs
 ```
 Note:<br>
 * ```loop0``` could be ```loop1```, ```loop2```, etc.
-* ```/home``` is the mounting directory. Changeable as desired.
+* ```/fs``` is the mounting directory. Changeable as desired.
