@@ -41,5 +41,5 @@ $ insmod myfs.ko
 $ mount -t myfs /dev/loop0 /home
 ```
 Note:<br>
-* loop0 could be loop1, loop2, etc.
-* /home is the mounting directory. Changeable as desired.
+* ```loop0``` could be ```loop1```, ```loop2```, etc.
+* ```/home``` is the mounting directory. Changeable as desired.
