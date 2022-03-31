@@ -42,4 +42,4 @@ $ mount -t myfs /dev/loop0 /fs
 ```
 Note:<br>
 * ```loop0``` could be ```loop1```, ```loop2```, etc.
-* ```/fs``` is the mounting directory. Changeable as desired.
+* ```/fs``` is the mounting directory. Changeable as desired. Do not mount the filesystem to a non-empty directory.
