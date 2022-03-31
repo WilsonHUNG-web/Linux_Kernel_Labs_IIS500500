@@ -28,7 +28,7 @@ $  lsmod |grep mychrdev
 Note:<br>
 * 'mychrdev' is just an example for the device name's keywords. It could be 'my', 'mychr', 'chr', 'chrdev', etc.
 ## II. ```myfs.c```
-This kernel function creates a filesystme of files and directories that provide specific functions and store numbers in the files.
+This kernel function creates a filesystem of files and directories that provide specific functions and store numbers in the files.
 
 ### 1. How to compile and install (```Makefile``` shall be editted accordingly based on different kernel function filenames.)
 ```
