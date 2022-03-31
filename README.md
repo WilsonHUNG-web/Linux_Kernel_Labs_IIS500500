@@ -23,8 +23,10 @@ $ rmmod mychrdev.ko
 ```
 ### 4. How to check whether a device exists
 ```
-$  lsmod |grep [device name's keyword]
+$  lsmod |grep mychrdev
 ```
+Note:<br>
+* 'mychrdev' is just an example for the device name's keywords. It could be 'my', 'mychr', 'chr', 'chrdev', etc.
 ## II. ```myfs.c```
 This kernel function creates a filesystme of files and directories that provide specific functions and store numbers in the files.
 
@@ -36,5 +38,8 @@ $ insmod myfs.ko
 ```
 ### 2. How to mount the file system (Write and Read)
 ```
-$ mount -t myfs /dev/loop0(could be loop1, loop2, etc.) [mounting directory]
+$ mount -t myfs /dev/loop0 /home
 ```
+Note:<br>
+* loop0 could be loop1, loop2, etc.
+* /home is the mounting directory. Changeable as desired.
