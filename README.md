@@ -49,7 +49,7 @@ $ make clean
 $ make
 $ insmod myfs.ko
 ```
-### 2. How to mount and unmount the file system (Write and Read)
+### 2. How to mount and unmount the file system
 ```
 $ mount -t myfs /dev/loop0 /fs
 $ umount -t myfs /dev/loop0 /fs
@@ -57,3 +57,4 @@ $ umount -t myfs /dev/loop0 /fs
 Note:<br>
 * ```loop0``` could be ```loop1```, ```loop2```, etc.
 * ```/fs``` is the mounting directory. Changeable as desired. Do not mount the filesystem to a non-empty directory.
+* Before removing the myfs module, user must firstly unmount the filesystem.
