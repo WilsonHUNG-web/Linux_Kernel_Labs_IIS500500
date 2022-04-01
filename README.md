@@ -30,11 +30,11 @@ Note:<br>
 ## II. ```myfs.c```
 This kernel function creates a filesystem of files and directories that provide add/sub functions and store numbers in the range [0, 255] in the files.<br>
 For example,
-```$ echo 23 > /fs/output/a ``` stores 23 in a.
-```$ echo 256 > /fs/output/b ``` prints invalid argument error by returning -EINVAL in the ```.write``` function.
-```$ cat /fs/output/sub ``` prints a-b.
-```$ cat /fs/output/add ``` prints a+b.
-```$ echo 256 > /fs/output/add ``` prints invalid argument error by returning -EINVAL in order to suspend users from writing values in add/sub.
+```$ echo 23 > /fs/output/a ``` stores 23 in a.<br>
+```$ echo 256 > /fs/output/b ``` prints invalid argument error by returning -EINVAL in the ```.write``` function.<br>
+```$ cat /fs/output/sub ``` prints a-b.<br>
+```$ cat /fs/output/add ``` prints a+b.<br>
+```$ echo 256 > /fs/output/add ``` prints invalid argument error by returning -EINVAL in order to suspend users from writing values in add/sub.<br>
 The filesystem tree structure looks like, <br>
 /fs<br>
 ├── input<br>
