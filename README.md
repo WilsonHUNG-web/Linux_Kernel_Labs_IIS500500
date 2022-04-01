@@ -28,18 +28,34 @@ $  lsmod |grep mychrdev
 Note:<br>
 * 'mychrdev' is just an example for the device name's keywords. It could be 'my', 'mychr', 'chr', 'chrdev', etc.
 ## II. ```myfs.c```
-This kernel function creates a filesystem of files and directories that provide specific functions and store numbers in the files.
-
+This kernel function creates a filesystem of files and directories that provide add/sub functions and store numbers in the range [0, 255] in the files.<br>
+For example,
+```$ echo 23 > /fs/output/a ``` stores 23 in a.
+```$ echo 256 > /fs/output/b ``` prints invalid argument error by returning -EINVAL in the ```.write``` function.
+```$ cat /fs/output/sub ``` prints a-b.
+```$ cat /fs/output/add ``` prints a+b.
+```$ echo 256 > /fs/output/add ``` prints invalid argument error by returning -EINVAL in order to suspend users from writing values in add/sub.
+The filesystem tree structure looks like, <br>
+/fs<br>
+├── input<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── a<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── b<br>
+└── output<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── add<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── sub<br>
+<br>
 ### 1. How to compile and install (```Makefile``` shall be editted accordingly based on different kernel function filenames.)
 ```
 $ make clean
 $ make
 $ insmod myfs.ko
 ```
-### 2. How to mount the file system (Write and Read)
+### 2. How to mount and unmount the file system (Write and Read)
 ```
 $ mount -t myfs /dev/loop0 /fs
+$ umount -t myfs /dev/loop0 /fs
 ```
 Note:<br>
 * ```loop0``` could be ```loop1```, ```loop2```, etc.
 * ```/fs``` is the mounting directory. Changeable as desired. Do not mount the filesystem to a non-empty directory.
+### 3. 
