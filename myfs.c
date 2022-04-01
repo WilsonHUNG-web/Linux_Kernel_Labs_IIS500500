@@ -9,9 +9,10 @@
  
 MODULE_LICENSE("GPL");
  
-#define MYFS_MAGIC 0x20210607
+#define MYFS_MAGIC 0x20220401
  
- 
+static atomic_t a, b, add, sub;
+
 static struct inode *myfs_make_inode(struct super_block *sb, int mode)
 {
         struct inode *ret = new_inode(sb);
@@ -31,20 +32,39 @@ static int myfs_open(struct inode *inode, struct file *filp)
         return 0;
 }
  
-#define TMPSIZE 20
+#define TMPSIZE 10
  
 static ssize_t myfs_read_file(struct file *filp, char *buf,
                 size_t count, loff_t *offset)
 {
         atomic_t *counter = (atomic_t *) filp->private_data;
+
         int v, len;
         char tmp[TMPSIZE];
- 
+	atomic_t c;
+	atomic_set(&c, 0);
+
+	//call add
+	if(((atomic_t *) filp->private_data)==&add){
+		//pr_info("add is called");
+		atomic_add(atomic_read(&a), &c);
+		atomic_add(atomic_read(&b), &c);
+		atomic_set(counter, atomic_read(&c));
+	}
+	//call sub
+	else if(((atomic_t *) filp->private_data)==&sub)
+	{
+		//pr_info("sub is called");
+		atomic_add(atomic_read(&a), &c);
+		atomic_sub(atomic_read(&b), &c);
+		atomic_set(counter, atomic_read(&c));
+	}
+
         v = atomic_read(counter);
         if (*offset > 0)
                 v -= 1;  /* the value returned when offset was zero */
-        else
-                atomic_inc(counter);
+        //else
+        //        atomic_inc(counter);
         len = snprintf(tmp, TMPSIZE, "%d\n", v);
         if (*offset > len)
                 return 0;
@@ -62,17 +82,29 @@ static ssize_t myfs_write_file(struct file *filp, const char *buf,
 {
         atomic_t *counter = (atomic_t *) filp->private_data;
         char tmp[TMPSIZE];
- 
+
+	//suspend user from editting add and sub's value
+	if(((atomic_t *) filp->private_data)==&add)
+		return -EINVAL;
+ 	if(((atomic_t *) filp->private_data)==&sub)
+		return -EINVAL;
+
+
         if (*offset != 0)
                 return -EINVAL;
- 
         if (count >= TMPSIZE)
                 return -EINVAL;
         memset(tmp, 0, TMPSIZE);
         if (copy_from_user(tmp, buf, count))
                 return -EFAULT;
- 
-        atomic_set(counter, simple_strtol(tmp, NULL, 10));
+
+	//let a and b be [0, 255]
+ 	if (simple_strtol(tmp, NULL, TMPSIZE) < 0)
+		return -EINVAL;
+ 	if (simple_strtol(tmp, NULL, TMPSIZE) > 255)
+		return -EINVAL;
+        
+	atomic_set(counter, simple_strtol(tmp, NULL, TMPSIZE));
         return count;
 }
  
@@ -145,19 +177,37 @@ static struct dentry *myfs_create_dir (struct super_block *sb,
 }
  
  
-static atomic_t counter, subcounter;
+//static atomic_t counter, subcounter;
  
+
+
 static void myfs_create_files (struct super_block *sb, struct dentry *root)
 {
-        struct dentry *subdir;
- 
-        atomic_set(&counter, 0);
-        myfs_create_file(sb, root, "counter", &counter);
- 
-        atomic_set(&subcounter, 0);
-        subdir = myfs_create_dir(sb, root, "subdir");
-        if (subdir)
-                myfs_create_file(sb, subdir, "subcounter", &subcounter);
+        //struct dentry *subdir;
+ 	struct dentry *input, *output;
+
+	input = myfs_create_dir(sb, root, "input");
+	output = myfs_create_dir(sb, root, "output");
+
+        //atomic_set(&counter, 0);
+        atomic_set(&a, 0);
+        atomic_set(&b, 0);
+        //myfs_create_file(sb, root, "counter", &counter);
+	
+	if(input){ 
+        myfs_create_file(sb, input, "a", &a);
+        myfs_create_file(sb, input, "b", &b);
+	}
+
+	if(output){
+        myfs_create_file(sb, output, "add", &add);
+        myfs_create_file(sb, output, "sub", &sub);
+        }
+
+	//atomic_set(&subcounter, 0);
+        //subdir = myfs_create_dir(sb, root, "subdir");
+        //if (subdir)
+        //        myfs_create_file(sb, subdir, "subcounter", &subcounter);
 }
  
  
