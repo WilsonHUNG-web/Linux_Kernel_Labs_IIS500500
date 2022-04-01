@@ -34,7 +34,7 @@ For example,<br>
 ```$ echo 256 > /fs/output/b ``` prints invalid argument error by returning ```-EINVAL``` in the ```.write``` function.<br>
 ```$ cat /fs/output/sub ``` prints a-b.<br>
 ```$ cat /fs/output/add ``` prints a+b.<br>
-```$ echo 256 > /fs/output/add ``` prints invalid argument error by returning ```-EINVAL``` in order to suspend users from writing values in add/sub.<br>
+```$ echo 256 > /fs/output/add ``` prints invalid argument error by returning ```-EINVAL``` in order to suspend users from writing values into add/sub.<br>
 The filesystem tree structure looks like, <br><br>
 /fs<br>
 ├── input<br>
