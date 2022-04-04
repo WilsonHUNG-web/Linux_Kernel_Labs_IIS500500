@@ -61,26 +61,32 @@ Note:<br>
 ## III. ```mycall```
 This custom system call, ```sys_mycall(char* str, int count)``` defined in ```mycall.c``` and ```syscalls.h```, takes a ```char*``` within 100 ```char``` and ```printk``` it into ```dmesg```. If ```char*``` has more than 100 ```char```, excessive ```char``` will be ignored.<br>
 Some header files shall be editted in order to implement a custom system call.<br>
+
 * ```mycall.c```: The implementation detail of ```sys_mycall(char* str, int count)```. Should be placed in the kernel image folder, e.g., ```/usr/src/kernels/[kernel_image_version]/mycall/mycall.c```.
-* ```unistd_65.h```: Locates at ```/usr/src/kernels/[kernel_image_version]/arch/x86/include/asm/unistd_64.h```. It defines the representative number of the system call. It is recommmended to add it after the last existing system call and give it the last system call's number plus 1, e.g., 302+1 = 303.
-```
-#define __NR_mycall                             303
-__SYSCALL(__NR_mycall, sys_mycall)
-```
+
 * ```syscalls.h```: Locates at ```/usr/src/kernels/[kernel_image_version]/include/linux/syscalls.h```<br>
 This header file formally defines ```sys_mycall(char* str, int count)```. Add it to the last lines. 
 ```
 asmlinkage long sys_mycall(char* ch, int count);
 ```
+
+* ```unistd_64.h```: Locates at ```/usr/src/kernels/[kernel_image_version]/arch/x86/include/asm/unistd_64.h```. It defines the representative number of the system call. It is recommmended to add it after the last existing system call and give it the last system call's number plus 1, e.g., 302+1 = 303.
+```
+#define __NR_mycall                             303
+__SYSCALL(__NR_mycall, sys_mycall)
+```
+
 * ```Makefile```: The makefile for ```mycall.c``` can be simplified as shown below.
 ```
 obj-y:=mycall.o
 core-y += kernel/ mm/ fs/ ipc/ security/ crypto/ block/ mycall/
 ```
+
 * ```/kernel/Makefile```: The makefile of the kernel image shall be editted in order to include our custom system call. It is located at ```/usr/src/[kernel_image_version]/Makefile```. Add ```mycall/``` after ```core-y +=``` at line 684, e.g., 
 ```
 core-y		+= kernel/ mm/ fs/ ipc/ security/ crypto/ block/ mycall/
 ```
+
 ### 1. How to install the system call
 After completing all the files mentioned above, we need to reconfigure the kernel image, reinstall it and reboot the system by the commands below.
 ```
