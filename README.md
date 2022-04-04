@@ -77,7 +77,7 @@ asmlinkage long sys_mycall(char* ch, int count);
 obj-y:=mycall.o
 core-y += kernel/ mm/ fs/ ipc/ security/ crypto/ block/ mycall/
 ```
-* ```/kernel/Makefile```: The makefile of the kernel image shall be editted in order to include our custom system call. It is located at ```/usr/src/[kernel_image_version]/Makefile```. Add ```/mycall``` after ```core-y +=``` at line 684, e.g., 
+* ```/kernel/Makefile```: The makefile of the kernel image shall be editted in order to include our custom system call. It is located at ```/usr/src/[kernel_image_version]/Makefile```. Add ```mycall/``` after ```core-y +=``` at line 684, e.g., 
 ```
 core-y		+= kernel/ mm/ fs/ ipc/ security/ crypto/ block/ mycall/
 ```
