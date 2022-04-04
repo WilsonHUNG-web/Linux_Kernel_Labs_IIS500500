@@ -107,5 +107,5 @@ We make a test C program, ```test_mycall.c```, to call sys_mycall by ```syscall(
 ### 4. How to check the ```printk``` messages.
 The results can be found by the command below.
 ```
-dmesg
+$ dmesg
 ```
