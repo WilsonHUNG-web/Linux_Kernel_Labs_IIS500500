@@ -98,7 +98,7 @@ $ make install
 $ reboot
 ```
 ### 2. How to check if the OS is successfully updated
-Use the command below to check if the timestamp of the kernel image is updated.
+Use the command below to check if the timestamp of the kernel image is updated to the moment of using command ```$ make -j1```
 ```
 $ uname -a
 ```
