@@ -1,6 +1,6 @@
 ## Specification
 Implement a system call, mycall, which passes a ```char``` pointer and can show the contents by ```printk()```.
-You must check whether the memory access to the pointer is valid or not. (Hint: use access_ok()) The char cannot exceed 100 chars. chars more than 100 will be cut out.<br>
+You must check whether the memory access to the pointer is valid or not. (Hint: use ```access_ok()```) The char cannot exceed 100 chars. chars more than 100 will be cut out.<br>
 
 Followings are the files to be editted with its basic structures.<br>
 
