@@ -1,4 +1,7 @@
-
+## Specification
+Implement a system call, mycall, which passes a ```char``` pointer and can show the contents by ```printk()```.
+You must check whether the memory access to the char pointer is valid or not. The char cannot exceed 100 chars. chars more than 100 will be cut out.
+ 
 ### For 64-bit: arch/x86/include/asm/unistd_64.h
 ```
 #define __NR_mycall                             307
