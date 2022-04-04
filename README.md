@@ -93,7 +93,7 @@ $ uname -a
 ```
 ### 3. How to call our custom system call
 We make a test C program, ```test_mycall.c```, to call sys_mycall by ```syscall(__NR_mycall, ch, 104);```, where ```ch``` is the ```char*``` and ```104``` is the number of ```char``` wanted to be ```printk```ed. (But as mentioned, ```char``` more than 100 will be ignored.)
-### 4. How to check the ```prink``` results
+### 4. How to check the ```printk``` messages.
 The results can be found by the command below.
 ```
 dmesg
