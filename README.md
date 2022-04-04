@@ -77,11 +77,11 @@ asmlinkage long sys_mycall(char* ch, int count);
 core-y		+= kernel/ mm/ fs/ ipc/ security/ crypto/ block/ mycall/
 ```
 ### 1. How to install the system call
-After completing all the files mentioned above, we need to reconfigure the kernel image by the commands below, reinstall it and reboot the system.
+After completing all the files mentioned above, we need to reconfigure the kernel image, reinstall it and reboot the system by the commands below.
 ```
 $ cd /usr/src/[kernel_image_version]
 $ make menuconfig
-$ make -j[#processor], e.g., -j1
+$ make -j[#processor], e.g., make -j1
 $ make modules_install
 $ make install
 $ reboot
