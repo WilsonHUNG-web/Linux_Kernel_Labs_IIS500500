@@ -58,3 +58,6 @@ Note:<br>
 * ```loop0``` could be ```loop1```, ```loop2```, etc.
 * ```/fs``` is the mounting directory. Changeable as desired. Do not mount the filesystem to a non-empty directory.
 * Before removing the myfs module, user must firstly unmount the filesystem.
+## III. ```mycall.c```+```unistd_65.h```+```syscalls.h```+```/usr/src/[kernel_image]/Makefile```
+This custom system call, ```mycall.c```, takes a ```char*``` within 100 ```char``` and ```printk``` it into ```dmesg```. If ```char*``` has more than 100 ```char```, excessive ```char``` will be ignored.
+
