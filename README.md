@@ -58,7 +58,7 @@ Note:<br>
 * ```loop0``` could be ```loop1```, ```loop2```, etc.
 * ```/fs``` is the mounting directory. Changeable as desired. Do not mount the filesystem to a non-empty directory.
 * Before removing the myfs module, user must firstly unmount the filesystem.
-## III. ```mycall```
+## III. ```/mycall```
 This custom system call, ```mycall.c```, takes a ```char*``` within 100 ```char``` and ```printk``` it into ```dmesg```. If ```char*``` has more than 100 ```char```, excessive ```char``` will be ignored.<br>
 Some header files shall be editted in order to implement a custom system call.<br>
 * ```mycall.c```: The system call itself. Should be placed in the kernel image folder, e.g., ```/usr/src/kernels/[kernel_image_version]/mycall/mycall.c```.
