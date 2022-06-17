@@ -109,7 +109,7 @@ The results can be found by the command below.
 ```
 $ dmesg
 ```
-<br>
+
 ## IV. ```myproc```
 This kernel function is used to print some information about a specific process's data in ```struct_task``` and ```struct_mm```.
 <br>
@@ -118,4 +118,16 @@ This kernel function is used to print some information about a specific process'
 $ make clean
 $ make
 $ insmod myproc.ko
+```
+### 2. How to run (Write and Read)
+We need to give a process PID to this device by ```echo``` and it will print the information of:
+* Parent PID
+* Start and end address of its code in hexadecimal format
+* Start and end address of its data and in hexadecimal format
+* Start and end address of its heap in hexadecimal format
+* Kernel Version (nothing to do with this proces PID)
+* Number of children process
+```
+$ echo 1122 > /proc/myproc
+$ cat /proc/myproc
 ```
