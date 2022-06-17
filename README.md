@@ -109,6 +109,13 @@ The results can be found by the command below.
 ```
 $ dmesg
 ```
-
-## I. ```myproc```
-This kernel function is used to print some information about a process's data in ```struct_task``` and ```struct_mm```.
+<br>
+## IV. ```myproc```
+This kernel function is used to print some information about a specific process's data in ```struct_task``` and ```struct_mm```.
+<br>
+### 1. How to compile and install (```Makefile``` shall be editted accordingly based on different kernel function filenames.)
+```
+$ make clean
+$ make
+$ insmod myproc.ko
+```
