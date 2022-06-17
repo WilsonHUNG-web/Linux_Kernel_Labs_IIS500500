@@ -109,3 +109,6 @@ The results can be found by the command below.
 ```
 $ dmesg
 ```
+
+## I. ```myproc```
+This kernel function is used to print some information about a process's data in ```struct_task``` and ```struct_mm```.
