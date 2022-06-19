@@ -131,5 +131,4 @@ We need to give a process PID to this device by ```echo``` and it will print the
 $ echo 1122 > /proc/myproc
 $ cat /proc/myproc
 ```
-<br>
 To get a process PID, we may use ```ps a``` command or use ```getpid()``` function defined in ```<unistd.h>``` in C to get the PID of a specific process. An example is provided in ```./myproc/test.c```. To compile it simply use command line ```gcc -o test.out test.c```, run it by ```./test.out``` command and use another terminal to lookup the PID by the ```echo``` and ```cat``` command mentioned above.
